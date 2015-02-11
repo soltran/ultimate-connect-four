@@ -14,6 +14,7 @@ function Game (LocalStorage) {
 
   var gameBoard = LocalStorage.get('board');
   var gamePlayer = getPlayer();
+  var spacesLeft = getSpacesLeft();
 
   // define functions here
 
@@ -31,6 +32,7 @@ function Game (LocalStorage) {
     }
     setBoard(board);
     gameBoard = board;
+    setSpacesLeft(r * c);
     return board;
   };
 
@@ -53,15 +55,30 @@ function Game (LocalStorage) {
 
   function dropChip(column){
   	var rows = gameBoard[column];
-  	console.log('hi', rows);
   	for(var i = 0; i < rows.length; i++){
   		if(rows[i] == ""){
-  			console.log(rows[i]);
-  			gameBoard[column][i] = gamePlayer ? 'O' : 'X';
+  			gameBoard[column][i] = gamePlayer ? 'X' : 'O';
   			setBoard(gameBoard);
+  			checkForConclusion([column,i]);
   			break;
   		}
   	}
+  }
+
+  // private methods
+
+  function checkForConclusion(){
+  	decrementSpacesLeft();
+    var token = gameBoard[column][i];
+  }
+
+  function getSpacesLeft(){
+  	LocalStorage.get('spacesLeft');
+  }
+
+  function decrementSpacesLeft(){
+  	spacesLeft--;
+  	LocalStorage.set('spacesLeft', spacesLeft);
   }
 
   return service;
