@@ -1,1 +1,43 @@
-game.html
+<div layout="vertical" layout-fill>
+
+    <header ng-include="'components/navbar/navbar.html'"></header>
+
+    <md-content>
+        <section class="jumbotron">
+            <div class='heroScreen'>
+                <h1>Ultimate Connect Four</h1>
+
+                <div layout='row'>
+                    <div flex='40'>
+                        <md-input-container>
+                            <label>Columns</label>
+                            <input type="number" ng-model="vm.board.columns" required md-maxlength="10">
+                        </md-input-container>
+                    </div>
+                    <div flex='40'>
+                        <md-input-container>
+                            <label>Rows</label>
+                            <input type="number" ng-model="vm.board.rows" required md-maxlength="10">
+                        </md-input-container>
+                    </div>
+                    <button flex='20' ng-click="vm.createBoard()">
+                        Create Board
+                    </button>
+                </div>
+                <div layout='row' layout-align='center'>
+                    <div class='board'>
+                        <div layout="row">
+                            <div ng-repeat="column in vm.builtBoard track by $index">
+                                <div ng-repeat="row in column track by $index">
+                                    <div class='board-square'>{{ row }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </md-content>
+
+</div>
