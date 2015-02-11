@@ -22,14 +22,15 @@ function GameCtrl (Game) {
   // define functions here
 
   function createBoard(){
-    console.log('creating board');
     vm.builtBoard = Game.createBoard(vm.board.rows, vm.board.columns);
-  };
+  }
 
-  function move(){
+  function move(column){
      vm.player = vm.player ? 0 : 1;
      Game.setPlayer(vm.player);
-  };
+     Game.dropChip(column);
+     vm.builtBoard = Game.getBoard();
+  }
 
 };
 

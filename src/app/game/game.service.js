@@ -6,14 +6,18 @@ function Game (LocalStorage) {
   var service = {
     'createBoard': createBoard,
     'getBoard': getBoard,
+    'setBoard': setBoard,
     'getPlayer': getPlayer,
-    'setPlayer': setPlayer
+    'setPlayer': setPlayer,
+    'dropChip': dropChip
   };
+
+  var gameBoard = LocalStorage.get('board');
+  var gamePlayer = getPlayer();
 
   // define functions here
 
   function createBoard(r, c){
-    console.log('prints');
     var rows = r
     var columns = c
     var board = [];
@@ -21,12 +25,12 @@ function Game (LocalStorage) {
     for(var i = 0; i < columns; i++){
       var inside = [];
       for(var j = 0; j < rows; j++){
-        inside.push(' ');
+        inside.push('');
       }
       board.push(inside);
     }
-    console.log(board);
-    LocalStorage.put('board', board);
+    setBoard(board);
+    gameBoard = board;
     return board;
   };
 
@@ -40,6 +44,24 @@ function Game (LocalStorage) {
 
   function setPlayer(p){
   	LocalStorage.put('player', p);
+  	gamePlayer = p;
+  }
+
+  function setBoard(b){
+  	LocalStorage.put('board', b);
+  }
+
+  function dropChip(column){
+  	var rows = gameBoard[column];
+  	console.log('hi', rows);
+  	for(var i = 0; i < rows.length; i++){
+  		if(rows[i] == ""){
+  			console.log(rows[i]);
+  			gameBoard[column][i] = gamePlayer ? 'O' : 'X';
+  			setBoard(gameBoard);
+  			break;
+  		}
+  	}
   }
 
   return service;
