@@ -85,7 +85,6 @@ function Game (LocalStorage) {
   	} else {
   		nextTurn();
   	}
-    var token = gameBoard[move[0]][move[1]];
   }
 
   function nextTurn(){
@@ -109,8 +108,84 @@ function Game (LocalStorage) {
   }
 
   function isWin(move){
-  	return false;
+  	var x = move[0];
+  	var y = move[1];
+  	var token = gameBoard[x][y];
+
+  	if(checkVerticalWin(x, y, token) || checkOtherWin(x, y, token)){
+  		alert('Player ' + (gamePlayer + 1) + ' Wins!');
+  		return true;
+  	} else {
+  		return false;
+  	}
   }
+
+
+
+  function checkVerticalWin(x, y, token){
+  	for(var i = 1; i < 4; i++){
+  		var row = y - i;
+  		if(row < 0 || gameBoard[x][row] != token){
+  			return false;
+  		}
+  	}
+  	return true;
+  }
+
+  function checkOtherWin(x, y, token){
+  	var slopes = [-1, 1, 0];
+  	var isWin = false;
+
+  	// check each of the directions
+
+  	for(var k = 0; k < 3; k++){
+  		var slope = slopes[k];
+  		var count = 1;
+
+  		// check Left Side
+  		for(var i = 1; i < 4; i++){
+  			var column = x - i;
+  			var row = y - (slope * i);
+  			var outOfBounds = column < 0 || row < 0 || column >= gameBoard.length || row >= gameBoard[0].length;
+  			
+  			// Check to see if it hits the edge
+
+  			if( outOfBounds || (gameBoard[column][row] != token)){
+  				break;
+  			} else {
+  				count++;
+  			}
+  		}
+
+  		if(count < 4){
+  			// check right Side
+  			console.log('check right side');
+  			for(var i = 1; i < 4; i++){
+	  			var column = x + i;
+	  			var row = y + (slope * i);
+	  			console.log('column', column, 'row', row);
+
+	  			var outOfBounds = column < 0 || row < 0 || column >= gameBoard.length || row >= gameBoard[0].length;
+	  			
+	  			// Check to see if it hits the edge
+
+	  			if(outOfBounds || (gameBoard[column][row] != token)){
+	  				break;
+	  			} else {
+	  				count++;
+	  				if(count == 4){
+	  					isWin = true;
+	  					break;
+	  				}
+	  			}
+  			}
+  		} else {
+  			isWin = true;
+  			break;
+  		}
+  	};
+	return isWin;
+  };
 
   return service;
 }

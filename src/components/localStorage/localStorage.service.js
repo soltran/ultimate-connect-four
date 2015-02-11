@@ -24,8 +24,6 @@ function LocalStorage ($window) {
   }
   
 
-
-
   return service;
 }
 

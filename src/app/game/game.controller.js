@@ -7,16 +7,14 @@ function GameCtrl (Game) {
   vm.builtBoard = Game.getBoard();
   vm.player = Game.getPlayer() || 0;
 	vm.board = {
-		'rows': 8,
-		'columns': 8
+		'rows': 5,
+		'columns': 5
 	};
   vm.move = move;
   vm.gameStatus = Game.getStatus();
 
 
   vm.createBoard = createBoard;
-
-
 
 
   // define functions here
