@@ -1,6 +1,9 @@
 # ultimate-connect-four
 The Ultimate Connect Four Game
 
+###< Play Game Live >
+To Play, click on the following link: https://dl.dropboxusercontent.com/u/3156331/apps/connectfour/dist/index.html
+
 ###< Installation >
 To install and run this project, follow the below steps:
 
