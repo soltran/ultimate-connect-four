@@ -67,9 +67,9 @@ function Game (LocalStorage) {
 
   // private methods
 
-  function checkForConclusion(){
+  function checkForConclusion(move){
   	decrementSpacesLeft();
-    var token = gameBoard[column][i];
+    var token = gameBoard[move[0]][move[1]];
   }
 
   function getSpacesLeft(){
@@ -78,7 +78,11 @@ function Game (LocalStorage) {
 
   function decrementSpacesLeft(){
   	spacesLeft--;
-  	LocalStorage.set('spacesLeft', spacesLeft);
+  	LocalStorage.put('spacesLeft', spacesLeft);
+  }
+
+  function setSpacesLeft(s){
+  	LocalStorage.put('spacesLeft', s);
   }
 
   return service;

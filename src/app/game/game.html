@@ -33,7 +33,9 @@
                                     <div class='board-square'>{{ row }}</div>
 
                                 </div>
-                                <button class='board-button' ng-click='vm.move($index)'>Move</button>
+                                <button class='board-button' 
+                                        ng-click='vm.move($index)' 
+                                        ng-hide='vm.builtBoard[$index][row.length -1]'>Move</button>
                             </div>
                         </div>
                     </div>
