@@ -1,11 +1,12 @@
 'use strict';
 /*jshint esnext: true */
 
-function Game () {
+function Game (LocalStorage) {
 
   var service = {
-    'createBoard': createBoard
-  }
+    'createBoard': createBoard,
+    'getBoard': getBoard
+  };
 
   // define functions here
 
@@ -23,15 +24,18 @@ function Game () {
       board.push(inside);
     }
     console.log(board);
-
+    LocalStorage.put('board', board);
     return board;
-  }
+  };
 
+  function getBoard(){
+  	return LocalStorage.get('board');
+  };
 
 
   return service;
 }
 
-Game.$inject = [];
+Game.$inject = ['LocalStorage'];
 
 export default Game;

@@ -1,20 +1,35 @@
-// function LocalStorage ($window) {
-//   function get(key) {
-//     el = $window.localStorage[key];
-//     if (el && el != 'undefined') {
-//       return JSON.parse(el);
-//     } else {
-//       return undefined;
-//     }
-//   }
+'use strict';
+/*jshint esnext: true */
 
-//   function put(key, value) {
-//     $window.localStorage[key] = JSON.stringify(value);
-//     return true;
-//   }
+function LocalStorage ($window) {
 
-//   return {
-//     get: get,
-//     put: put
-//   };  
-// });
+  var service = {
+    'get': get,
+    'put': put
+  }
+
+  // define functions here
+  function get(key) {
+    var el = $window.localStorage[key];
+    if (el && el != 'undefined') {
+      return JSON.parse(el);
+    } else {
+      return undefined;
+    }
+  }
+
+  function put(key, value) {
+    $window.localStorage[key] = JSON.stringify(value);
+    return true;
+  }
+  
+
+
+
+  return service;
+}
+
+LocalStorage.$inject = ['$window'];
+
+export default LocalStorage;
+

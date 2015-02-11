@@ -8,7 +8,7 @@ function GameCtrl (Game) {
 		'rows': 10,
 		'columns': 8
 	};
-  vm.builtBoard = [];
+  vm.builtBoard = Game.getBoard();
 
   console.log('check');
   vm.createBoard = createBoard;
