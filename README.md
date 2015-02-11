@@ -14,9 +14,9 @@ To install and run this project, follow the below steps:
 `npm install`
 
 ####41. Run Gulp
-'gulp'
+`gulp`
 
 ###5. Run Gulp serve:dist
-'gulp serve:dist'
+`gulp serve:dist`
 
   
