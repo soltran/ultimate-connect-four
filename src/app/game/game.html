@@ -24,13 +24,16 @@
                         Create Board
                     </button>
                 </div>
+                <h2 class='playerHeadline'>Player {{ vm.player + 1}}'s Turn</h2>
                 <div layout='row' layout-align='center'>
                     <div class='board'>
                         <div layout="row">
                             <div ng-repeat="column in vm.builtBoard track by $index">
                                 <div ng-repeat="row in column track by $index">
                                     <div class='board-square'>{{ row }}</div>
+
                                 </div>
+                                <button class='board-button' ng-click='vm.move()'>Move</button>
                             </div>
                         </div>
                     </div>

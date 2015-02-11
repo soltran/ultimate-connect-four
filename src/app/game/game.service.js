@@ -5,7 +5,9 @@ function Game (LocalStorage) {
 
   var service = {
     'createBoard': createBoard,
-    'getBoard': getBoard
+    'getBoard': getBoard,
+    'getPlayer': getPlayer,
+    'setPlayer': setPlayer
   };
 
   // define functions here
@@ -32,6 +34,13 @@ function Game (LocalStorage) {
   	return LocalStorage.get('board');
   };
 
+  function getPlayer(){
+  	return LocalStorage.get('player');
+  }
+
+  function setPlayer(p){
+  	LocalStorage.put('player', p);
+  }
 
   return service;
 }
