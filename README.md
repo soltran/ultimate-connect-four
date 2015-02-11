@@ -22,4 +22,17 @@ To install and run this project, follow the below steps:
 ###5. Run Gulp serve:dist
 `gulp serve:dist`
 
+##TODO:
+`add protractor tests`
+`add jasmine tests`
+`refactor into directives`
+`make responsive`
+`style`
+
+
+
+
+
+
+
   
