@@ -29,7 +29,7 @@
                     <div class='board'>
                         <div layout="row">
                             <div ng-repeat="column in vm.builtBoard track by $index">
-                                <div ng-repeat="row in column track by $index">
+                                <div ng-repeat="row in column | reverse track by $index">
                                     <div class='board-square'>{{ row }}</div>
 
                                 </div>

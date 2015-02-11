@@ -12,7 +12,11 @@ angular.module('connectFour', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .controller('NavbarCtrl', NavbarCtrl)
   .factory('LocalStorage', LocalStorage)
   .service('Game', Game)
-
+  .filter('reverse', function(){
+    return function(items){
+      return items.slice().reverse();
+    };
+  })
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
