@@ -5,7 +5,7 @@ The Ultimate Connect Four Game
 To install and run this project, follow the below steps:
 
 ####1. Clone Repo
-`git clone https://github.com/soltran/ultimate-connect-four.git'
+`git clone https://github.com/soltran/ultimate-connect-four.git`
 
 ####2. Install Bower Modules
 `bower install`
@@ -14,7 +14,7 @@ To install and run this project, follow the below steps:
 `npm install`
 
 ####41. Run Gulp
-`gulp`
+`gulp build`
 
 ###5. Run Gulp serve:dist
 `gulp serve:dist`
