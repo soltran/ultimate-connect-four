@@ -9,12 +9,14 @@ function Game (LocalStorage) {
     'setBoard': setBoard,
     'getPlayer': getPlayer,
     'setPlayer': setPlayer,
-    'dropChip': dropChip
+    'dropChip': dropChip,
+    'getStatus': getStatus
   };
 
   var gameBoard = LocalStorage.get('board');
   var gamePlayer = getPlayer();
   var spacesLeft = getSpacesLeft();
+  var gameStatus = "It's Player " + (gamePlayer + 1) + "'s Turn!";
 
   // define functions here
 
@@ -49,6 +51,10 @@ function Game (LocalStorage) {
   	gamePlayer = p;
   }
 
+  function getStatus(){
+  	return gameStatus;
+  }
+
   function setBoard(b){
   	LocalStorage.put('board', b);
   }
@@ -69,7 +75,23 @@ function Game (LocalStorage) {
 
   function checkForConclusion(move){
   	decrementSpacesLeft();
+  	console.log(spacesLeft);
+
+  	if(isWin(move)){
+  		gameStatus = "Player " + (gamePlayer + 1) + " wins!";
+  	}
+  	else if(spacesLeft == 0){
+  		gameStatus = "Draw!"
+  	} else {
+  		nextTurn();
+  	}
     var token = gameBoard[move[0]][move[1]];
+  }
+
+  function nextTurn(){
+  	gamePlayer = gamePlayer ? 0 : 1;
+  	setPlayer(gamePlayer);
+  	gameStatus = "Play On! It's Player " + (gamePlayer + 1) + "'s Turn!"; 
   }
 
   function getSpacesLeft(){
@@ -77,12 +99,17 @@ function Game (LocalStorage) {
   }
 
   function decrementSpacesLeft(){
-  	spacesLeft--;
+  	spacesLeft = spacesLeft - 1;
   	LocalStorage.put('spacesLeft', spacesLeft);
   }
 
   function setSpacesLeft(s){
+  	spacesLeft = s;
   	LocalStorage.put('spacesLeft', s);
+  }
+
+  function isWin(move){
+  	return false;
   }
 
   return service;

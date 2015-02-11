@@ -11,6 +11,7 @@ function GameCtrl (Game) {
 		'columns': 8
 	};
   vm.move = move;
+  vm.gameStatus = Game.getStatus();
 
 
   vm.createBoard = createBoard;
@@ -25,10 +26,10 @@ function GameCtrl (Game) {
   }
 
   function move(column){
-     vm.player = vm.player ? 0 : 1;
-     Game.setPlayer(vm.player);
      Game.dropChip(column);
+     vm.player = Game.getPlayer();
      vm.builtBoard = Game.getBoard();
+     vm.gameStatus = Game.getStatus();
   }
 
 };
