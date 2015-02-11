@@ -7,13 +7,12 @@ function GameCtrl (Game) {
   vm.builtBoard = Game.getBoard();
   vm.player = Game.getPlayer() || 0;
 	vm.board = {
-		'rows': 10,
+		'rows': 8,
 		'columns': 8
 	};
   vm.move = move;
 
 
-  console.log('check');
   vm.createBoard = createBoard;
 
 
